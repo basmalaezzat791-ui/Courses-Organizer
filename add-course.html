@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI University — Add Course</title>
+    <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+    <!-- ===== HEADER ===== -->
+    <header>
+        <div class="logo-wrap">
+            <div class="logo-icon">&#x1F9E0;</div>
+            <div class="logo-text">AI<span>Study</span></div>
+        </div>
+        <p class="header-sub">// Personal Course Organizer v2.0</p>
+    </header>
+
+    <!-- ===== NAV ===== -->
+    <nav>
+        <ul>
+            <li><a href="index.html"><span class="nav-icon">&#x25A3;</span> Home</a></li>
+            <li><a href="courses.html"><span class="nav-icon">&#x25A3;</span> My Courses</a></li>
+            <li><a href="add-course.html" class="active"><span class="nav-icon">&#x25A3;</span> Add Course</a></li>
+            <li><a href="contact.html"><span class="nav-icon">&#x25A3;</span> Contact Us</a></li>
+        </ul>
+    </nav>
+
+    <!-- ===== MAIN ===== -->
+    <main>
+        <section>
+            <h2 class="section-title">Add a <span>New Course</span></h2>
+            <p class="section-sub">// Register a new module into your learning system</p>
+            <div class="divider"></div>
+
+            <div class="form-card">
+                <div class="form-grid">
+
+                    <!-- Course Name -->
+                    <div class="form-group full">
+                        <label for="courseName">Course Name <span>*</span></label>
+                        <input
+                            type="text"
+                            id="courseName"
+                            name="courseName"
+                            placeholder="e.g., Reinforcement Learning"
+                            required
+                        />
+                    </div>
+
+                    <!-- Instructor -->
+                    <div class="form-group">
+                        <label for="instructor">Instructor <span>*</span></label>
+                        <input
+                            type="text"
+                            id="instructor"
+                            name="instructor"
+                            placeholder="e.g., Dr. Sara Al-Mansouri"
+                            required
+                        />
+                    </div>
+
+                    <!-- Credit Hours -->
+                    <div class="form-group">
+                        <label for="creditHours">Credit Hours <span>*</span></label>
+                        <select id="creditHours" name="creditHours" required>
+                            <option value="" disabled selected>-- Select --</option>
+                            <option value="1">1 Credit Hour</option>
+                            <option value="2">2 Credit Hours</option>
+                            <option value="3">3 Credit Hours</option>
+                            <option value="4">4 Credit Hours</option>
+                        </select>
+                    </div>
+
+                    <!-- Track -->
+                    <div class="form-group">
+                        <label for="track">AI Track</label>
+                        <select id="track" name="track">
+                            <option value="" disabled selected>-- Select --</option>
+                            <option value="ml">Machine Learning</option>
+                            <option value="dl">Deep Learning</option>
+                            <option value="nlp">NLP</option>
+                            <option value="cv">Computer Vision</option>
+                            <option value="robotics">Robotics</option>
+                            <option value="ethics">AI Ethics</option>
+                            <option value="general">General</option>
+                        </select>
+                    </div>
+
+                    <!-- Status -->
+                    <div class="form-group">
+                        <label for="status">Status</label>
+                        <select id="status" name="status">
+                            <option value="active" selected>Active</option>
+                            <option value="completed">Completed</option>
+                            <option value="dropped">Dropped</option>
+                        </select>
+                    </div>
+
+                    <!-- Notes -->
+                    <div class="form-group full">
+                        <label for="notes">Notes</label>
+                        <textarea
+                            id="notes"
+                            name="notes"
+                            placeholder="Exam dates, project deadlines, textbooks, lab info..."
+                        ></textarea>
+                    </div>
+
+                    <!-- Actions -->
+                    <div class="form-actions full">
+                        <button type="button" class="btn btn-primary" onclick="handleSubmit()">
+                            &#x2713; Register Course
+                        </button>
+                        <button type="button" class="btn btn-ghost" onclick="clearForm()">
+                            Reset
+                        </button>
+                        <a href="courses.html" class="btn" style="background:transparent; color:var(--text-secondary); border:1px solid var(--border);">
+                            &larr; Back
+                        </a>
+                    </div>
+
+                </div>
+
+                <div class="success-msg" id="successMsg">
+                    &gt; Course registered successfully &mdash;
+                    <a href="courses.html">view in My Courses &rarr;</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- ===== FOOTER ===== -->
+    <footer>
+        <p>&copy; 2026 <strong>AIStudy</strong> &mdash; Personal Course Organizer &mdash; Built with HTML &amp; CSS</p>
+    </footer>
+
+    <script>
+        function handleSubmit() {
+            const name   = document.getElementById('courseName').value.trim();
+            const instr  = document.getElementById('instructor').value.trim();
+            const credit = document.getElementById('creditHours').value;
+            if (!name || !instr || !credit) {
+                alert('Please complete all required fields (*).');
+                return;
+            }
+            const msg = document.getElementById('successMsg');
+            msg.style.display = 'block';
+            msg.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function clearForm() {
+            ['courseName','instructor','notes'].forEach(id => document.getElementById(id).value = '');
+            document.getElementById('creditHours').value = '';
+            document.getElementById('track').value = '';
+            document.getElementById('status').value = 'active';
+            document.getElementById('successMsg').style.display = 'none';
+        }
+    </script>
+
+</body>
+</html>
